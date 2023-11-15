@@ -1,5 +1,4 @@
 // Imports
-import ora from 'ora';
 import inquirer from 'inquirer';
 import { printLogo, msg, sleep } from './common.js';
 import tasks from './tasks.js';
@@ -22,7 +21,7 @@ const answer = await inquirer.prompt({
         {name: 'Hide Home tab in File Explorer', value: 'explorerDisableHomeTab', checked: true},
         new inquirer.Separator('----- Other Tasks -----'),
         {name: 'Enable ssh-agent', value: 'enableSshAgent', checked: true},
-        {name: 'Install NVIDIA Graphics Driver', value: 'nvinstall', checked: false},
+        //{name: 'Install NVIDIA Graphics Driver', value: 'nvinstall', checked: false},
     ],
     validate: function(answer) {
         return answer.length < 1 ? 'So... we\'re doing nothing? Pick something pls.' : true;
