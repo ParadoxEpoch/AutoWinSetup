@@ -28,7 +28,7 @@ if exist .\node_modules\ (
 
 :WingetMissing
 call :PrintLogo
-echo [91mIt looks like the Windows Package Manager (WinGet) is not present on this system.[0m
+echo [91mIt looks like the Windows Package Manager (WinGet) is not installed on this system.[0m
 echo [93mWinGet is included in Windows 10 1709 and later, and is required to proceed with setup.[0m
 echo.
 echo [96mIf you need to install WinGet, you can do so from the link below.[0m
@@ -68,7 +68,7 @@ goto :CheckNode
 :LaunchSetup
 call :PrintLogo
 echo [32m[1mAll checks passed! Launching AutoWin Setup...[0m
-timeout 2 > nul
+timeout 1 > nul
 node main.js
 exit 0
 
