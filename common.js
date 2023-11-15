@@ -1,6 +1,20 @@
 import chalk from 'chalk';
-import {exec, spawn} from 'child_process';
+import {spawn} from 'child_process';
 export { chalk };
+
+export const execute = (command) => {
+    return new Promise((resolve, reject) => {
+        const childProcess = spawn(command, { shell: true, stdio: 'inherit' });
+
+        childProcess.on('close', (code) => {
+            if (code === 0) {
+                resolve(`Child process exited with code ${code}`);
+            } else {
+                reject(new Error(`Child process exited with code ${code}`));
+            }
+        });
+    });
+};
 
 const msg = {
     bold: chalk.bold,
@@ -12,7 +26,7 @@ const msg = {
     success: chalk.bold.green,
     brand: chalk.bold.hex('#7f00ff')
 }
-export {msg};
+export { msg };
 
 // * Adds padding to both side of a string to center align it to the ASCII logo in the console
 function centerString(text) {
