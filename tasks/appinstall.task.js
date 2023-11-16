@@ -1,9 +1,6 @@
 import inquirer from "inquirer";
 import { execute, printLogo, msg } from "../common.js";
-import tmp from 'tmp';
 import downloadBinary from "@paradoxepoch/node-file-downloader";
-
-tmp.setGracefulCleanup();
 
 const appList = [
     {
