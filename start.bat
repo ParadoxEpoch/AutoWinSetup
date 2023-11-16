@@ -1,5 +1,4 @@
 @echo off
-title Paradox's AutoWin Setup
 call :PrintLogo
 goto :CheckWinget
 
@@ -89,6 +88,7 @@ if /I "%response%" EQU "Y" (
 goto :eof
 
 :PrintLogo
+title Paradox's AutoWin Setup
 cls
 setlocal
 echo [96m[1m~~~ ParadoxEpoch's Auto Windows Setup ~~~[0m

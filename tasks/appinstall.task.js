@@ -139,6 +139,13 @@ const appList = [
         name: "Rockstar Games Launcher",
         launchArgs: "",
         source: "http"
+    },
+    {
+        id: "NVUpdater",
+        url: "https://www.sys-worx.net/filebase/download/67/",
+        name: "NV Updater",
+        launchArgs: "",
+        source: "http"
     }
 ]
 
