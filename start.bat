@@ -60,4 +60,9 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 ::::::::::::::::::::::::::::::::::::::::::::::
 :: Run TestKit Launcher in Windows Terminal ::
 ::::::::::::::::::::::::::::::::::::::::::::::
-wt %~dp0was.cmd
+where /q wt
+if %errorlevel% equ 0 (
+    wt %~dp0was.cmd
+) else (
+    cmd /C "%~dp0was.cmd"
+)
