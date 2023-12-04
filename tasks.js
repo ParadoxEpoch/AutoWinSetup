@@ -9,48 +9,26 @@ const tasks = {
     debloat: debloat,
     appInstall: appInstall,
     disableWin11CxtMenu: async () => {
-        printLogo('Explorer Tweaks');
-        console.log(msg.info(`Disabling Windows 11 context menu...\n`));
-        try {
-            await execute(`reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InProcServer32" /f /ve`);
-            console.log(msg.success(`\n✓ Success!`));
-        } catch (e) {
-            console.log(msg.error(`\n✗ Failed`));
-        }
+        console.log(msg.info(`==> Disabling Windows 11 context menu...\n`));
+        await executeNoFail(`reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InProcServer32" /f /ve`, 'Adding registry key...');
         return true;
     },
     explorerOpenToThisPC: async () => {
-        printLogo('Explorer Tweaks');
-        console.log(msg.info(`Setting File Explorer to open to "This PC"...\n`));
-        try {
-            await execute(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "LaunchTo" /t REG_DWORD /d 1 /f`);
-            console.log(msg.success(`\n✓ Success!`));
-        } catch (e) {
-            console.log(msg.error(`\n✗ Failed`));
-        }
+        console.log(msg.info(`==> Setting File Explorer to open to "This PC"...\n`));
+        await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "LaunchTo" /t REG_DWORD /d 1 /f`, 'Adding registry key...');
         return true;
     },
     explorerShowExtensions: async () => {
-        printLogo('Explorer Tweaks');
-        console.log(msg.info(`Showing file extensions in File Explorer...\n`));
-        try {
-            await execute(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "HideFileExt" /t REG_DWORD /d 0 /f`);
-            console.log(msg.success(`\n✓ Success!`));
-        } catch (e) {
-            console.log(msg.error(`\n✗ Failed`));
-        }
+        console.log(msg.info(`==> Showing file extensions in File Explorer...\n`));
+        await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "HideFileExt" /t REG_DWORD /d 0 /f`, 'Adding registry key...');
         return true;
     },
     explorerDisableHomeTab: async () => {
-        printLogo('Explorer Tweaks');
-        console.log(msg.info(`Hiding "Home" tab in File Explorer...\n`));
-        try {
-            await execute(`reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v "HubMode" /t REG_DWORD /d 1 /f`);
-            await execute(`reg delete "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace_36354489\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}" /f`);
-            console.log(msg.success(`\n✓ Success!`));
-        } catch (e) {
-            console.log(msg.error(`\n✗ Failed`));
-        }
+        console.log(msg.info(`==> Hiding "Home" tab in File Explorer...\n`));
+        await executeNoFail(`reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v "HubMode" /t REG_DWORD /d 1 /f`, 'Setting HubMode DWORD to 1...');
+        await executeNoFail(`reg delete "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace_36354489\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}" /f`, 'Removing Home from navigation pane...');
+        return true;
+    },
     explorerDisableCxtGiveAccessTo: async () => {
         console.log(msg.info(`==> Removing "Give Access To" context menu item...\n`));
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "SharingWizardOn" /t REG_DWORD /d 0 /f`, 'Setting SharingWizardOn DWORD to 0...');

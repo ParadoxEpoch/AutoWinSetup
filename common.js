@@ -16,6 +16,18 @@ export const execute = (command) => {
     });
 };
 
+export const executeNoFail = (command, infoName) => {
+    console.log(msg.bold(infoName || `Running: ${command}`));
+    return new Promise((resolve) => {
+        const childProcess = spawn(command, { shell: true, stdio: 'inherit' });
+
+        childProcess.on('close', (code) => {
+            console.log(code === 0 ? msg.success(`✓ Success!\n`) : msg.error(`✗ Failed\n`));
+            resolve(code);
+        });
+    });
+};
+
 const msg = {
     bold: chalk.bold,
     info: chalk.bold.blue,
