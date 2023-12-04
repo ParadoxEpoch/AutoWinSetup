@@ -108,13 +108,13 @@ export default async function main() {
         const appName = appList.find(x => x.id === app).name;
         try {
             console.log(msg.info(`Removing ${appName}...`));
-            await execute(`winget uninstall --id ${app}`);
+            await execute(`winget uninstall --accept-source-agreements --id ${app}`);
             console.log(msg.success(`✓ Success!\n`));
         } catch (e) {
             console.log(msg.error(`✗ Error removing ${appName}\n`));
         }
     }
 
-    console.log(msg.success("Bloatware removal complete!"));
+    console.log(msg.success("✓ Bloatware removal complete!\n"));
     return true;
 }

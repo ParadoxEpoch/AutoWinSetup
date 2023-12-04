@@ -4,6 +4,13 @@ import downloadBinary from "@paradoxepoch/node-file-downloader";
 
 const appList = [
     {
+        id: "NVUpdater",
+        url: "https://www.sys-worx.net/filebase/download/67/",
+        name: "NV Updater (Nvidia Driver Updater)",
+        launchArgs: "",
+        source: "http"
+    },
+    {
         id: "7zip.7zip",
         name: "7zip",
         source: "winget"
@@ -139,13 +146,6 @@ const appList = [
         name: "Rockstar Games Launcher",
         launchArgs: "",
         source: "http"
-    },
-    {
-        id: "NVUpdater",
-        url: "https://www.sys-worx.net/filebase/download/67/",
-        name: "NV Updater",
-        launchArgs: "",
-        source: "http"
     }
 ]
 
@@ -178,7 +178,7 @@ export default async function main() {
         console.log(msg.info(`Installing ${app.name}...`));
         try {
             if (app.source === "winget") {
-                await execute(`winget install -e --id ${app.id}`);
+                await execute(`winget install --accept-package-agreements --accept-source-agreements -e --id ${app.id}`);
             } else if (app.source === "http") {
                 const tmpFile = await downloadBinary(app.url, null, {
                     downloadMsg: null,
@@ -195,6 +195,6 @@ export default async function main() {
         }
     }
 
-    console.log(msg.success("Software installation complete!"));
+    console.log(msg.success("✓ Software installation complete!\n"));
     return true;
 }
