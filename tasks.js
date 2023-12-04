@@ -109,14 +109,10 @@ const tasks = {
         return true;
     },
     enableSshAgent: async () => {
-        printLogo('Enable ssh-agent');
-        console.log(msg.info(`Enabling ssh-agent...\n`));
-        try {
-            await execute('elevate.cmd "enable-ssh-agent.bat"');
-            console.log(msg.success(`\n✓ Success!`));
-        } catch (e) {
-            console.log(msg.error(`\n✗ Failed`));
-        }
+        console.log(msg.info(`==> Enabling ssh-agent...\n`));
+        await executeNoFail('sc config ssh-agent start= auto', 'Setting ssh-agent service to start automatically...');
+        await executeNoFail('net start ssh-agent', 'Starting ssh-agent service...');
+        return true;
     },
     nvinstall: async () => {
         console.log('Installing NVIDIA Graphics Driver...');
