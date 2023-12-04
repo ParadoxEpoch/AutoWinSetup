@@ -141,6 +141,11 @@ const appList = [
         source: "winget"
     },
     {
+        id: "Gyan.FFmpeg",
+        name: "FFmpeg",
+        source: "winget"
+    },
+    {
         id: "RockstarGamesLauncher",
         url: "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe",
         name: "Rockstar Games Launcher",
