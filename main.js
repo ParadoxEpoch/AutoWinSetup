@@ -1,6 +1,6 @@
 // Imports
 import inquirer from 'inquirer';
-import { printLogo, msg, sleep } from './common.js';
+import { executeNoFail, printLogo, msg, sleep } from './common.js';
 import tasks from './tasks.js';
 
 async function main() {
@@ -48,16 +48,38 @@ async function main() {
 
     console.log(msg.success('==> All tasks completed!\n'));
 
-    const restart = await inquirer.prompt({
+    const startOver = await inquirer.prompt({
         type: 'confirm',
         name: 'do',
         message: 'Would you like to do something else?',
         default: true,
     });
 
-    restart.do
-        ? main(false)
-        : printLogo('Thank you, come again!') && process.exit(0);
+    if (startOver.do) main();
+    else {
+        const reboot = await inquirer.prompt({
+            type: 'confirm',
+            name: 'do',
+            message: 'Do you want to reboot now?',
+            default: false
+        });
+        if (reboot.do) {
+            await executeNoFail('shutdown /r /t 0', 'Rebooting Windows...');
+            await sleep(2500);
+        } else {
+            const restartExplorer = await inquirer.prompt({
+                type: 'confirm',
+                name: 'do',
+                message: 'Do you want to restart Explorer at least?',
+                default: true
+            });
+            if (restartExplorer.do) {
+                await executeNoFail('taskkill /f /im explorer.exe', 'Killing Explorer...');
+                await executeNoFail('start explorer.exe', 'Relaunching Explorer...');
+            }
+        }
+    }
+
 }
 
 main();
