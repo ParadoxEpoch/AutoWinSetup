@@ -70,7 +70,7 @@ async function main() {
             const restartExplorer = await inquirer.prompt({
                 type: 'confirm',
                 name: 'do',
-                message: 'Do you want to restart Explorer at least?',
+                message: 'Can we restart Explorer at least? 👉👈',
                 default: true
             });
             if (restartExplorer.do) {
