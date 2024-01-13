@@ -2,6 +2,10 @@ import inquirer from "inquirer";
 import { execute, printLogo, msg } from "../common.js";
 
 const appList = [
+	{
+		id: "9MSSGKG348SP",
+		name: "Windows Web Experience Pack (Widgets)"
+	},
     {
         id: "9P1J8S7CCWWT",
         name: "Clipchamp"
