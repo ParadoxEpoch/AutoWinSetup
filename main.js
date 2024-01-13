@@ -19,8 +19,12 @@ async function main() {
             {name: 'Set File Explorer to open to This PC', value: 'explorerOpenToThisPC', checked: true},
             {name: 'Show File Extensions in File Explorer', value: 'explorerShowExtensions', checked: true},
             {name: 'Hide Home tab in File Explorer', value: 'explorerDisableHomeTab', checked: true},
+            {name: 'Disable Taskbar Search Box', value: 'explorerDisableTaskbarSearch', checked: true},
+            {name: 'Disable Taskbar "Task View" Icon', value: 'explorerDisableTaskbarTaskView', checked: true},
+			// Deleting Teams gets rid of this anyway...
+            /* {name: 'Disable Taskbar "Chat" Icon', value: 'explorerDisableTaskbarChat', checked: true}, */
             {name: 'Disable "Previous Versions" and remove context menu item', value: 'explorerDisablePreviousVersions', checked: true},
-            {name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: true},
+            {name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: false},
             new inquirer.Separator('----- Remove Context Menu Items -----'),
             {name: 'Remove "Give Access To..."', value: 'explorerDisableCxtGiveAccessTo', checked: true},
             {name: 'Remove "Scan with Microsoft Defender..."', value: 'explorerDisableCxtScanWithDefender', checked: true},
