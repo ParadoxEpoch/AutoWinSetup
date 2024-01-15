@@ -34,6 +34,10 @@ const appList = [
         id: "9WZDNCRFHVQM",
         name: "Mail and Calendar"
     },
+	{
+		id: "9NRX63209R7B",
+		name: "Outlook for Windows (new)"
+	},
     {
         id: "9WZDNCRDTBVB",
         name: "Maps"
