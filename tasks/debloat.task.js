@@ -120,7 +120,9 @@ export default async function main() {
 		const appName = appList.find(x => x.id === app).name;
 		try {
 			console.log(msg.info(`Removing ${appName}...`));
-			await execute(`winget uninstall --accept-source-agreements --id ${app}`);
+			// Split app ids by space and remove each one separately, since one ID failing to uninstall will cause the whole command to fail
+			const apps = app.split(" ");
+			for (const a of apps) await execute(`winget uninstall --accept-source-agreements --id ${a}`);
 			console.log(msg.success(`✓ Success!\n`));
 		} catch (e) {
 			console.log(msg.error(`✗ Error removing ${appName}\n`));
