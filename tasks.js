@@ -8,6 +8,11 @@ import debloat from './tasks/debloat.task.js';
 const tasks = {
     debloat: debloat,
     appInstall: appInstall,
+	disableConsumerExperience: async () => {
+		console.log(msg.info(`==> Disabling "Microsoft Consumer Experiences"...\n`));
+		await executeNoFail(`reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 1 /f`, 'Setting DisableWindowsConsumerFeatures DWORD to 1...');
+		return true;
+	},
     disableWin11CxtMenu: async () => {
         console.log(msg.info(`==> Disabling Windows 11 context menu...\n`));
         await executeNoFail(`reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InProcServer32" /f /ve`, 'Adding registry key...');

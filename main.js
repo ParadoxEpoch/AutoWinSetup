@@ -14,6 +14,7 @@ async function main() {
             new inquirer.Separator('----- Software Installation -----'),
             {name: 'Remove Windows Bloatware', value: 'debloat', checked: true},
             {name: 'Install Common Apps', value: 'appInstall', checked: true},
+			{name: 'Disable "Microsoft Consumer Experiences" (bloatware and ads)', value: 'disableConsumerExperience', checked: true},
             new inquirer.Separator('----- Explorer Tweaks -----'),
             {name: 'Disable Windows 11 (WinUI) Context Menu', value: 'disableWin11CxtMenu', checked: true},
             {name: 'Set File Explorer to open to This PC', value: 'explorerOpenToThisPC', checked: true},
