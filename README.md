@@ -77,6 +77,12 @@ Manually download this repository and run `setup.bat`.
 * Disable "Microsoft Consumer Experiences"
   * This option prevents Microsoft from automatically installing more bloatware in the future and disables "Microsoft recommendations" *(aka. ads)* across various parts of Windows.
 * Disable Windows 11 (WinUI) Context Menu
+* Disable Lock Screen Ads
+* Disable Start Menu Recommendations
+* Disable Start Menu Bing Search
+* Disable Edge Startup Boost
+* Disable Telemetry / Data Collection
+* Enable Developer Mode
 * Set File Explorer to open to "This PC"
 * Show File Extensions in File Explorer
 * Hide "Home" tab in File Explorer
