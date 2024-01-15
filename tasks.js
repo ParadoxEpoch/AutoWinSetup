@@ -55,11 +55,11 @@ const tasks = {
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "ShowTaskViewButton" /t REG_DWORD /d 0 /f`, 'Setting ShowTaskViewButton DWORD to 0...');
         return true;
     },
-	/* explorerDisableTaskbarChat: async () => {
+	explorerDisableTaskbarChat: async () => {
         console.log(msg.info(`==> Removing "Chat" icon from the Taskbar..\n`));
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "TaskbarMn" /t REG_DWORD /d 0 /f`, 'Setting TaskbarMn DWORD to 0...');
         return true;
-    }, */
+    },
 	explorerDisableTaskbarWidgets: async () => {
         console.log(msg.info(`==> Removing "Widgets" icon from the Taskbar..\n`));
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "TaskbarDa" /t REG_DWORD /d 0 /f`, 'Setting TaskbarDa DWORD to 0...');

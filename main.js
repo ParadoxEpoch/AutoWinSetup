@@ -24,8 +24,7 @@ async function main() {
 			{name: 'Enable "End Task" in Taskbar Context Menu', value: 'explorerEnableTaskbarEndTask', checked: true},
             {name: 'Disable Taskbar Search Box', value: 'explorerDisableTaskbarSearch', checked: true},
             {name: 'Disable Taskbar "Task View" Icon', value: 'explorerDisableTaskbarTaskView', checked: true},
-			// Deleting Teams gets rid of this anyway...
-            /* {name: 'Disable Taskbar "Chat" Icon', value: 'explorerDisableTaskbarChat', checked: true}, */
+            {name: 'Disable Taskbar "Chat" Icon', value: 'explorerDisableTaskbarChat', checked: true},
             {name: 'Disable Taskbar "Widgets" Icon', value: 'explorerDisableTaskbarWidgets', checked: true},
             {name: 'Disable "Previous Versions" and remove context menu item', value: 'explorerDisablePreviousVersions', checked: true},
             {name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: false},
