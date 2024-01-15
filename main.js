@@ -9,6 +9,7 @@ async function main() {
 		type: 'checkbox',
 		message: 'Select tasks',
 		name: 'tasks',
+		loop: false,
 		pageSize: 20,
 		choices: [
 			new inquirer.Separator('----- Software Installation -----'),
