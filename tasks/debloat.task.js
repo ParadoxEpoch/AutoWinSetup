@@ -51,7 +51,7 @@ const appList = [
 		name: "OneDrive"
 	},
 	{
-		id: "9WZDNCRFJBMP XP8BT8DW290MPQ Microsoft.Teams",
+		id: "XP8BT8DW290MPQ Microsoft.Teams",
 		name: "Teams"
 	},
 	{
