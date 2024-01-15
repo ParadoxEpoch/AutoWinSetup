@@ -36,7 +36,11 @@ const appList = [
 	},
 	{
 		id: "9NRX63209R7B",
-		name: "Outlook for Windows (new)"
+		name: "Outlook for Windows (new) (Web App)"
+	},
+	{
+		id: "9WZDNCRD29V9",
+		name: "Microsoft 365 (Office) (Web App)"
 	},
 	{
 		id: "9WZDNCRDTBVB",
