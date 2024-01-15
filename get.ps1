@@ -6,7 +6,7 @@
 #  If you're reading this, run the following	#
 #  command in PowerShell to run AutoWinSetup:	#
 #################################################
-#     irm https://winsetup.gauci.xyz | iex		#
+#     irm https://winsetup.gauci.xyz | iex      #
 #################################################
 
 # Define the URL of the zip file and the temporary directory path
