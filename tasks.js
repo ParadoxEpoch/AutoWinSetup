@@ -10,12 +10,45 @@ const tasks = {
 	appInstall: appInstall,
 	disableConsumerExperience: async () => {
 		console.log(msg.info(`==> Disabling "Microsoft Consumer Experiences"...\n`));
-		await executeNoFail(`reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 1 /f`, 'Setting DisableWindowsConsumerFeatures DWORD to 1...');
+		await executeNoFail(`reg add "HKLM\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d 1 /f`, 'Setting DisableWindowsConsumerFeatures DWORD to 1...');
 		return true;
 	},
 	disableWin11CxtMenu: async () => {
 		console.log(msg.info(`==> Disabling Windows 11 context menu...\n`));
 		await executeNoFail(`reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InProcServer32" /f /ve`, 'Adding registry key...');
+		return true;
+	},
+	disableLockScreenAds: async () => {
+		console.log(msg.info(`==> Disabling Lock Screen Ads...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v "RotatingLockScreenOverlayEnabled" /t REG_DWORD /d 0 /f`, 'Setting RotatingLockScreenOverlayEnabled DWORD to 0...');
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v "SubscribedContent-338387Enabled" /t REG_DWORD /d 0 /f`, 'Setting SubscribedContent-338387Enabled DWORD to 0...');
+		return true;
+	},
+	disableStartMenuRecommendations: async () => {
+		console.log(msg.info(`==> Disabling Start Menu Recommendations...\n`));
+		await executeNoFail(`reg add "HKLM\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v "HideRecommendedSection" /t REG_DWORD /d 1 /f`, 'Setting HideRecommendedSection DWORD to 1...');
+		return true;
+	},
+	disableStartMenuWebSearch: async () => {
+		console.log(msg.info(`==> Disabling Start Menu Web Search...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d 1 /f`, 'Setting DisableSearchBoxSuggestions DWORD to 1...');
+		return true;
+	},
+	disableEdgeStartupBoost: async () => {
+		console.log(msg.info(`==> Disabling Edge Startup Boost...\n`));
+		await executeNoFail(`reg add "HKLM\\Software\\Policies\\Microsoft\\Edge" /v "StartupBoostEnabled" /t REG_DWORD /d 0 /f`, 'Setting StartupBoostEnabled DWORD to 0...');
+		return true;
+	},
+	disableTelemetry: async () => {
+		console.log(msg.info(`==> Disabling Telemetry...\n`));
+		await executeNoFail(`reg add "HKLM\\Software\\Policies\\Microsoft\\Windows\\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d 0 /f`, 'Setting AllowTelemetry DWORD to 0...');
+		await executeNoFail(`sc stop DiagTrack`, 'Stopping DiagTrack service...');
+		await executeNoFail(`sc config DiagTrack start= disabled`, 'Disabling DiagTrack service...');
+		return true;
+	},
+	enableDevMode: async () => {
+		console.log(msg.info(`==> Enabling Developer Mode...\n`));
+		await executeNoFail(`reg add "HKLM\\Software\\Policies\\Microsoft\\Windows\\Appx" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"`, 'Setting AllowDevelopmentWithoutDevLicense DWORD to 1...');
 		return true;
 	},
 	explorerOpenToThisPC: async () => {
