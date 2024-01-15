@@ -29,6 +29,8 @@ Manually download this repository and run `setup.bat`.
   * Get Help
   * Mail and Calendar
   * Outlook for Windows (new)
+  * Microsoft 365 (Office)
+    * This is the web app / PWA version of 365.
   * Maps
   * Media Player
   * OneDrive
