@@ -1,4 +1,13 @@
-# Download the latest version of AutoWinSetup and run the start.bat batch file
+#################################################
+###          AutoWinSetup - get.ps1           ###
+#################################################
+
+#################################################
+#  If you're reading this, run the following	#
+#  command in PowerShell to run AutoWinSetup:	#
+#################################################
+#     irm https://winsetup.gauci.xyz | iex		#
+#################################################
 
 # Define the URL of the zip file and the temporary directory path
 $zipUrl = "https://codeload.github.com/ParadoxEpoch/AutoWinSetup/zip/refs/heads/main"
@@ -27,8 +36,3 @@ if (Test-Path $startBatPath) {
 } else {
     Write-Host "The start.bat file was not found in the extracted contents."
 }
-
-# Cleanup: delete the temporary directory after the batch script has finished running
-Remove-Item -Recurse -Force $tempDir
-
-Write-Host "Script completed."
