@@ -29,6 +29,11 @@ const tasks = {
         await executeNoFail(`reg delete "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace_36354489\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}" /f`, 'Removing Home from navigation pane...');
         return true;
     },
+	explorerEnableDarkMode: async () => {
+		console.log(msg.info(`==> Enabling Dark Mode...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d 0 /f`, 'Setting AppsUseLightTheme DWORD to 0...');
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d 0 /f`, 'Setting SystemUsesLightTheme DWORD to 0...');
+	},
 	explorerDisableTaskbarSearch: async () => {
 		console.log(msg.info(`==> Disabling Taskbar Search Box...\n`));
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d 0 /f`, 'Setting SearchboxTaskbarMode DWORD to 0...');
@@ -43,6 +48,11 @@ const tasks = {
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "TaskbarMn" /t REG_DWORD /d 0 /f`, 'Setting TaskbarMn DWORD to 0...');
         return true;
     }, */
+	explorerDisableTaskbarWidgets: async () => {
+        console.log(msg.info(`==> Removing "Widgets" icon from the Taskbar..\n`));
+        await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "TaskbarDa" /t REG_DWORD /d 0 /f`, 'Setting TaskbarDa DWORD to 0...');
+        return true;
+    },
     explorerDisableCxtGiveAccessTo: async () => {
         console.log(msg.info(`==> Removing "Give Access To" context menu item...\n`));
         await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v "SharingWizardOn" /t REG_DWORD /d 0 /f`, 'Setting SharingWizardOn DWORD to 0...');
@@ -105,9 +115,6 @@ const tasks = {
         await executeNoFail('sc config ssh-agent start= auto', 'Setting ssh-agent service to start automatically...');
         await executeNoFail('net start ssh-agent', 'Starting ssh-agent service...');
         return true;
-    },
-    nvinstall: async () => {
-        console.log('Installing NVIDIA Graphics Driver...');
     }
 }
 
