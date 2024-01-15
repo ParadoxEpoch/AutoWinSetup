@@ -21,6 +21,7 @@ async function main() {
             {name: 'Show File Extensions in File Explorer', value: 'explorerShowExtensions', checked: true},
             {name: 'Hide Home tab in File Explorer', value: 'explorerDisableHomeTab', checked: true},
             {name: 'Enable Dark Mode', value: 'explorerEnableDarkMode', checked: true},
+			{name: 'Enable "End Task" in Taskbar Context Menu', value: 'explorerEnableTaskbarEndTask', checked: true},
             {name: 'Disable Taskbar Search Box', value: 'explorerDisableTaskbarSearch', checked: true},
             {name: 'Disable Taskbar "Task View" Icon', value: 'explorerDisableTaskbarTaskView', checked: true},
 			// Deleting Teams gets rid of this anyway...

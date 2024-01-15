@@ -38,10 +38,17 @@ const tasks = {
 		console.log(msg.info(`==> Enabling Dark Mode...\n`));
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d 0 /f`, 'Setting AppsUseLightTheme DWORD to 0...');
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d 0 /f`, 'Setting SystemUsesLightTheme DWORD to 0...');
+		return true;
+	},
+	explorerEnableTaskbarEndTask: async () => {
+		console.log(msg.info(`==> Enabling "End Task" in Taskbar Context Menu...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings" /v "TaskbarEndTask" /t REG_DWORD /d 1 /f`, 'Setting TaskbarEndTask DWORD to 1...');
+		return true;
 	},
 	explorerDisableTaskbarSearch: async () => {
 		console.log(msg.info(`==> Disabling Taskbar Search Box...\n`));
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d 0 /f`, 'Setting SearchboxTaskbarMode DWORD to 0...');
+		return true;
 	},
 	explorerDisableTaskbarTaskView: async () => {
         console.log(msg.info(`==> Removing "Task View" icon from the Taskbar..\n`));
