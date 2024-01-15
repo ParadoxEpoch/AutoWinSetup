@@ -34,8 +34,8 @@ async function main() {
             {name: 'Remove "Add to Favorites"', value: 'explorerDisableCxtAddToFavorites', checked: true},
             {name: 'Remove "Share"', value: 'explorerDisableCxtShare', checked: true},
             new inquirer.Separator('----- Other Tasks -----'),
-            {name: 'Enable Windows Sandbox', value: 'enableSandboxFeature', checked: true},
-            {name: 'Enable ssh-agent', value: 'enableSshAgent', checked: true}
+            {name: 'Enable Windows Sandbox', value: 'enableSandboxFeature', checked: false},
+            {name: 'Enable ssh-agent', value: 'enableSshAgent', checked: false}
         ],
         validate: function(answer) {
             return answer.length < 1 ? 'So... we\'re doing nothing? Pick something pls.' : true;
