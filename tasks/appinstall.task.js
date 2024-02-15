@@ -116,6 +116,11 @@ const appList = [
 		source: "winget"
 	},
 	{
+		id: 'valinet.ExplorerPatcher',
+		name: 'ExplorerPatcher',
+		source: 'winget'
+	},
+	{
 		id: "StartIsBack.StartAllBack",
 		name: "StartAllBack",
 		source: "winget"
