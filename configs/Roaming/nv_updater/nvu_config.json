@@ -1,0 +1,46 @@
+{
+  "application": {
+    "autorun": true,
+    "logmode": false,
+    "autoupdate": true,
+    "updatetimer": 86400000
+  },
+  "info": {
+    "installed": "28/09/2023 5:29:59 PM"
+  },
+  "update": {
+    "DisplayNView": true,
+    "NvCamera": false,
+    "NvContainer": true,
+    "ShieldWirelessController": true,
+    "MSVCRT": false,
+    "PPC": true,
+    "hotfix": true,
+    "rgbtoggle": "Full",
+    "NvBackend": true,
+    "studio": false,
+    "HDAudio": false,
+    "PhysX": false,
+    "rgbfix": false,
+    "dchdriver": true,
+    "GFExperience": true,
+    "clean": false,
+    "telemetry": true,
+    "DisplayUpdate": false,
+    "ignore": false,
+    "NvvHCI": true,
+    "nodejs": true,
+    "NvVAD": true,
+    "DisplayOptimus": true,
+    "UpdateCore": true,
+    "NvAbHub": true,
+    "silent": false,
+    "NGXCore": false,
+    "NVWMI": false,
+    "ShadowPlay": true,
+    "Version": null,
+    "FrameViewSDK": true,
+    "NVModuleTracker": true,
+    "NVPCF": true
+  }
+}

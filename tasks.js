@@ -224,6 +224,12 @@ const tasks = {
 		await executeNoFail('reg import "scripts/ExplorerPatcher_settings.reg"', 'Importing scripts\\ExplorerPatcher_settings.reg...');
 		return true;
 	},
+	importAppDataConfigs: async () => {
+		console.log(msg.info(`==> Importing AppData configs...\n`));
+		await executeNoFail('robocopy "configs\\Roaming" "%APPDATA%" /NJH /NJS /NDL /NFL /E /IS /IT /XJ /XO /R:0 /W:0', 'Merging configs\\Roaming into AppData...', { expectCode: 3 });
+		await executeNoFail('robocopy "configs\\Local" "%LOCALAPPDATA%" /NJH /NJS /NDL /NFL /E /IS /IT /XJ /XO /R:0 /W:0', 'Merging configs\\Local into LocalAppData...', { expectCode: 3 });
+		return true;
+	},
 	enableSandboxFeature: async () => {
 		console.log(msg.info(`==> Enabling Windows Sandbox...\n`));
 		await executeNoFail(`dism /online /Enable-Feature /FeatureName:"Containers-DisposableClientVM" /All /LimitAccess /NoRestart`, 'Enabling Containers-DisposableClientVM feature via DISM...');
