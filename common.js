@@ -16,13 +16,22 @@ export const execute = (command) => {
 	});
 };
 
-export const executeNoFail = (command, infoName) => {
+export const executeNoFail = (command, infoName, options = {}) => {
+	// Set default options
+	options = {
+		expectCode: 0,
+		...options
+	};
+
+	// If expectCode is not an array, convert it to one
+	if (!Array.isArray(options.expectCode)) options.expectCode = [options.expectCode];
+
 	console.log(msg.bold(infoName || `Running: ${command}`));
 	return new Promise((resolve) => {
 		const childProcess = spawn(command, { shell: true, stdio: 'inherit' });
 
 		childProcess.on('close', (code) => {
-			console.log(code === 0 ? msg.success(`✓ Success!\n`) : msg.error(`✗ Failed\n`));
+			console.log(options.expectCode.includes(code) ? msg.success(`✓ Success!\n`) : msg.error(`✗ Failed\n`));
 			resolve(code);
 		});
 	});
