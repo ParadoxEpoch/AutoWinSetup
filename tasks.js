@@ -230,6 +230,11 @@ const tasks = {
 		await executeNoFail('robocopy "configs\\Local" "%LOCALAPPDATA%" /NJH /NJS /NDL /NFL /E /IS /IT /XJ /XO /R:0 /W:0', 'Merging configs\\Local into LocalAppData...', { expectCode: 3 });
 		return true;
 	},
+	cleanupStartMenu: async () => {
+		console.log(msg.info(`==> Cleaning up Start Menu folders...\n`));
+		await executeNoFail('rmdir /s /q "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Accessibility"', 'Deleting Accessibility folder...');
+		return true;
+	},
 	enableSandboxFeature: async () => {
 		console.log(msg.info(`==> Enabling Windows Sandbox...\n`));
 		await executeNoFail(`dism /online /Enable-Feature /FeatureName:"Containers-DisposableClientVM" /All /LimitAccess /NoRestart`, 'Enabling Containers-DisposableClientVM feature via DISM...');
