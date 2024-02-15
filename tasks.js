@@ -219,6 +219,11 @@ const tasks = {
 		await executeNoFail('"scripts/delete-profile-dirs.bat"', 'Running deletion script...');
 		return true;
 	},
+	importExplorerPatcherSettings: async () => {
+		console.log(msg.info(`==> Importing ExplorerPatcher settings...\n`));
+		await executeNoFail('reg import "scripts/ExplorerPatcher_settings.reg"', 'Importing scripts\\ExplorerPatcher_settings.reg...');
+		return true;
+	},
 	enableSandboxFeature: async () => {
 		console.log(msg.info(`==> Enabling Windows Sandbox...\n`));
 		await executeNoFail(`dism /online /Enable-Feature /FeatureName:"Containers-DisposableClientVM" /All /LimitAccess /NoRestart`, 'Enabling Containers-DisposableClientVM feature via DISM...');

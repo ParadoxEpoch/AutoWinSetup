@@ -47,6 +47,7 @@ async function main() {
 			{name: 'Remove "Print"', value: 'explorerDisableCtxPrint', checked: true},
 			{name: 'Remove Image "Rotate Left" and "Rotate Right"', value: 'explorerDisableCtxImageRotation', checked: true},
 			new inquirer.Separator('----- Other Tasks -----'),
+			{name: 'Import ExplorerPatcher Settings', value: 'importExplorerPatcherSettings', checked: false},
 			{name: 'Enable Windows Sandbox', value: 'enableSandboxFeature', checked: false},
 			{name: 'Enable ssh-agent', value: 'enableSshAgent', checked: false}
 		],
