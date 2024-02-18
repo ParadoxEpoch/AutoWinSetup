@@ -219,6 +219,19 @@ const tasks = {
 		await executeNoFail('"scripts/delete-profile-dirs.bat"', 'Running deletion script...');
 		return true;
 	},
+	removeSteamUninstallLinks: async () => {
+		// Determine main drive letter
+		const mainDrive = process.env.SystemDrive;
+		// Create Scripts folder on main drive if it doesn't exist
+		await executeNoFail(`mkdir "${mainDrive}\\Scripts"`, 'Creating Scripts folder on main drive...');
+		// Make Scripts folder hidden
+		await executeNoFail(`attrib +h "${mainDrive}\\Scripts"`, 'Hiding Scripts folder...');
+		// Copy scripts\installable\remove-steam-uninstall-links.bat to \Scripts
+		await executeNoFail(`copy "scripts\\installable\\remove-steam-uninstall-links.bat" "${mainDrive}\\Scripts"`, 'Copying remove-steam-uninstall-links.bat to Scripts folder...');
+		// Create a scheduled task to run the script at logon
+		await executeNoFail(`schtasks /create /tn "Remove Steam Uninstall Links" /tr "${mainDrive}\\Scripts\\remove-steam-uninstall-links.bat" /sc ONLOGON /ru SYSTEM /f`, 'Creating scheduled task to run remove-steam-uninstall-links.bat at logon...');
+		return true;
+	},
 	importExplorerPatcherSettings: async () => {
 		console.log(msg.info(`==> Importing ExplorerPatcher settings...\n`));
 		await executeNoFail('reg import "scripts/ExplorerPatcher_settings.reg"', 'Importing scripts\\ExplorerPatcher_settings.reg...');

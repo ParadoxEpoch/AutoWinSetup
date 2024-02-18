@@ -38,6 +38,8 @@ async function main() {
 			{name: 'Disable Taskbar "Widgets" Icon', value: 'explorerDisableTaskbarWidgets', checked: true},
 			{name: 'Disable "Previous Versions" and remove context menu item', value: 'explorerDisablePreviousVersions', checked: true},
 			{name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: false},
+			new inquirer.Separator('----- Install Routine Tasks -----'),
+			{name: 'Remove Steam Game Uninstall Links', value: 'removeSteamUninstallLinks', checked: true},
 			new inquirer.Separator('----- Remove Context Menu Items -----'),
 			{name: 'Remove "Give Access To..."', value: 'explorerDisableCxtGiveAccessTo', checked: true},
 			{name: 'Remove "Scan with Microsoft Defender..."', value: 'explorerDisableCxtScanWithDefender', checked: true},

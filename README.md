@@ -110,6 +110,5 @@ Manually download this repository and run `setup.bat`.
 
 ## To add
 
-* Auto clear Steam installer entries at startup
 * Remove startup items
 * Import app configurations/data
