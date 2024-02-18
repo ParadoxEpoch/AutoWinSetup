@@ -44,7 +44,7 @@ Manually download this repository and run `setup.bat`.
   * Voice Recorder
   * Weather
   * Windows Web Experience Pack (Widgets)
-* One-click install for nearly 30 common apps and tools
+* One-click install for 30 common apps and tools
   * NVUpdater (Lightweight NVIDIA driver update tool)
   * 7zip
   * Steam
@@ -67,6 +67,7 @@ Manually download this repository and run `setup.bat`.
   * qBittorrent
   * TablePlus
   * TeraCopy
+  * Explorer Patcher
   * StartAllBack
   * TegraRCMGUI
   * Notion
@@ -76,6 +77,9 @@ Manually download this repository and run `setup.bat`.
   * Rockstar Games Launcher
 * Disable "Microsoft Consumer Experiences"
   * This option prevents Microsoft from automatically installing more bloatware in the future and disables "Microsoft recommendations" *(aka. ads)* across various parts of Windows.
+* Disable Fast Startup
+* Remove Duplicate Drive Entries in File Explorer Navigation Pane
+* Disable Gallery in File Explorer
 * Disable Windows 11 (WinUI) Context Menu
 * Disable Lock Screen Ads
 * Disable Start Menu Recommendations
@@ -104,6 +108,14 @@ Manually download this repository and run `setup.bat`.
   * This does not affect Microsoft Defender. It only removes the unnecessary scan item in right click menus.
 * Remove "Add to Favorites" context menu item
 * Remove "Share" content menu item
+* Remove "Cast to Device" context menu item
+* Remove "Print" context menu item
+* Remove Image "Rotate Left" and "Rotate Right" context menu items
+* Import ExplorerPatcher Settings
+  * These are my personal ExplorerPatcher settings. They're pretty solid defaults.
+* Import AppData configurations
+  * This will import any app configurations in the configs/Local and configs/Roaming folders.
+  * By default, this will import my personal settings for nv_updater.
 * Enable Windows Sandbox feature
 * Enable ssh-agent service
   * This is useful for developers to enable passwordless Git and SSH authentication.
