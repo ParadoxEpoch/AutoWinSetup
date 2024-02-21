@@ -121,6 +121,11 @@ const appList = [
 		source: 'winget'
 	},
 	{
+		id: 'JanDeDobbeleer.OhMyPosh',
+		name: 'OhMyPosh',
+		source: 'winget'
+	},
+	{
 		id: "StartIsBack.StartAllBack",
 		name: "StartAllBack",
 		source: "winget"
