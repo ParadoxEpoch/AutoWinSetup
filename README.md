@@ -78,6 +78,7 @@ Manually download this repository and run `setup.bat`.
 * Disable "Microsoft Consumer Experiences"
   * This option prevents Microsoft from automatically installing more bloatware in the future and disables "Microsoft recommendations" *(aka. ads)* across various parts of Windows.
 * Disable Fast Startup
+  * Fast Startup is supposed to speed up Windows boot times but provides almost no benefit on modern SSDs and can cause many issues in Windows, especially with Windows Update or when dual-booting. This option will disable it.
 * Remove Duplicate Drive Entries in File Explorer Navigation Pane
   * File Explorer shows drives in the sidebar navigation pane both under "This PC" and individually. This is pointless and can slow down explorer, especially when using mapped network drives. This option disables that behaviour.
 * Disable Gallery in File Explorer
