@@ -41,6 +41,7 @@ const msg = {
 	bold: chalk.bold,
 	info: chalk.bold.blue,
 	link: chalk.underline.blue,
+	italic: chalk.italic,
 	//error: chalk.bgRed.hex('#cccccc'),
 	error: chalk.bold.red,
 	warn: chalk.bold.yellow,
