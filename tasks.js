@@ -83,6 +83,11 @@ const tasks = {
 		await executeNoFail(`reg delete "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace_36354489\\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}" /f`, 'Removing Home from navigation pane...');
 		return true;
 	},
+	explorerPreventFolderViewChanges: async () => {
+		console.log(msg.info(`==> Preventing automatic folder view changes in File Explorer...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\Bags\\AllFolders\\Shell" /v "FolderType" /t REG_SZ /d "NotSpecified" /f`, 'Setting FolderType String to NotSpecified...');
+		return true;
+	},
 	explorerEnableDarkMode: async () => {
 		console.log(msg.info(`==> Enabling Dark Mode...\n`));
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d 0 /f`, 'Setting AppsUseLightTheme DWORD to 0...');
