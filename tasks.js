@@ -1,4 +1,5 @@
 //import ora from 'ora';
+import fs from 'fs-extra';
 import { execute, executeNoFail, msg } from './common.js';
 
 // Import tasks
@@ -224,6 +225,66 @@ const tasks = {
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /f`, 'Creating Range10000 key...');
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /v "*" /t REG_DWORD /d 1 /f`, 'Adding * DWORD to Range10000...');
 		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /v ":Range" /t REG_SZ /d "192.168.1.*" /f`, 'Adding :Range String to Range10000...');
+		return true;
+	},
+	forceEnableDMACompliance: async () => {
+		console.log(msg.info(`==> Force enabling policies related to the EU Digital Markets Act...\n`));
+
+		// Check if IntegratedServicesRegionPolicySet.json exists
+		if (!await fs.pathExists('C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json')) {
+			console.log(msg.error('FAILED: Couldn\'t find the region policy file. Please verify that you have the latest version of AutoWinSetup and Windows 11 Build 22631.3235 or newer.'));
+			return false;
+		}
+
+		await executeNoFail(`takeown /F "C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json" /A`, 'Taking ownership of IntegratedServicesRegionPolicySet.json...');
+		await executeNoFail(`icacls "C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json" /grant Administrators:F`, 'Granting Administrators full control of IntegratedServicesRegionPolicySet.json...');
+
+		// Load the C:\Windows\System32\IntegratedServicesRegionPolicySet.json file for editing
+		const policySet = await fs.readJson('C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json');
+
+		// Grab the list of EEA regions from a policy we know to be related to compliance with the EU Digital Markets Act
+		// This way if other countries legislate similar laws or join the EEA, we won't have to update the script
+		const edgeIsUninstallable = policySet.policies.find(p => p.guid === '{1bca278a-5d11-4acf-ad2f-f9ab6d7f93a6}');
+		if (!edgeIsUninstallable?.conditions?.region?.enabled) {
+			console.log(msg.error('FAILED: Couldn\'t find EEA regions in the policy file. Please verify that you have the latest version of AutoWinSetup and Windows 11 Build 22631.3235 or newer.'));
+			return false;
+		};
+		const euRegions = JSON.stringify(edgeIsUninstallable.conditions.region.enabled);
+		//const euRegions = ["AT", "BE", "BG", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GF", "GP", "GR", "HR", "HU", "IE", "IS", "IT", "LI", "LT", "LU", "LV", "MT", "MQ", "NL", "NO", "PL", "PT", "RE", "RO", "SE", "SI", "SK", "YT"];
+		const allRegions = ["AF","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ",
+		"BM","BT","BO","BQ","BA","BW","BV","BR","IO","BN","BG","BF","BI","CV","KH","CM","CA","KY","CF","TD","CL","CN","CX","CC","CO","KM","CD",
+		"CG","CK","CR","HR","CU","CW","CY","CZ","CI","DK","DJ","DM","DO","EC","EG","SV","GQ","ER","EE","SZ","ET","FK","FO","FJ","FI","FR","GF",
+		"PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GD","GP","GU","GT","GG","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","ID",
+		"IR","IQ","IE","IM","IL","IT","JM","JP","JE","JO","KZ","KE","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LT","LU","MO",
+		"MG","MW","MY","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","ME","MS","MA","MZ","MM","NA","NR","NP","NL","NC","NZ",
+		"NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PE","PH","PN","PL","PT","PR","QA","MK","RO","RU","RW","RE","BL",
+		"SH","KN","LC","MF","PM","VC","WS","SM","ST","SA","SN","RS","SC","SL","SG","SX","SK","SI","SB","SO","ZA","GS","SS","ES","LK","SD","SR",
+		"SJ","SE","CH","SY","TW","TJ","TZ","TH","TL","TG","TK","TO","TT","TN","TR","TM","TC","TV","UG","UA","AE","GB","UM","US","UY","UZ","VU",
+		"VE","VN","VG","VI","WF","EH","YE","ZM","ZW","AX"];
+
+		// Loop through each policy and patch the EEA regions to all regions
+		console.log(msg.bold(`Searching for and patching policies with EU specific conditions...`));
+		policySet.policies.forEach(p => {
+			// Trim p.$comment to max 50 characters and add ellipsis if it's longer
+			const description = p.$comment.length > 50 ? p.$comment.substring(0, 50) + '...' : p.$comment;
+
+			// If the policy has a condition that matches the EEA regions, patch it to include all regions
+			if (p.conditions.region?.enabled && JSON.stringify(p.conditions.region.enabled) === euRegions) {
+				p.conditions.region.enabled = allRegions;
+				console.log(`Found policy "${description}" and enabled it in all regions.`);
+			} else if (p.conditions.region?.disabled && JSON.stringify(p.conditions.region.disabled) === euRegions){
+				p.conditions.region.disabled = allRegions;
+				console.log(`Found policy "${description}" and disabled it in all regions.`);
+			}
+		});
+
+		// Write the updated JSON back to the file
+		console.log(msg.bold(`\nWriting patched IntegratedServicesRegionPolicySet.json back to disk...`));
+		await fs.writeJson('C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json', policySet, { spaces: 2 });
+
+		// Restore original file permissions
+		await executeNoFail(`icacls "C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json" /setowner "NT SERVICE\\TrustedInstaller"`, 'Restoring ownership of IntegratedServicesRegionPolicySet.json back to TrustedInstaller...');
+		await executeNoFail(`icacls "C:\\Windows\\System32\\IntegratedServicesRegionPolicySet.json" /grant:r Administrators:RX`, 'Revoking full control of IntegratedServicesRegionPolicySet.json...');
 		return true;
 	},
 	deleteExtraProfileDirs: async () => {

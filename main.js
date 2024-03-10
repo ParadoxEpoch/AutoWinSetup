@@ -39,6 +39,7 @@ async function main() {
 			{name: 'Disable "Previous Versions" and remove context menu item', value: 'explorerDisablePreviousVersions', checked: true},
 			{name: 'Prevent Auto Folder View Changes', value: 'explorerPreventFolderViewChanges', checked: false},
 			{name: 'Add Local Network to Intranet Zone', value: 'addLocalNetworkToIntranetZone', checked: false},
+			{name: 'Force Enable European DMA Compliance', value: 'forceEnableDMACompliance', checked: false},
 			{name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: false},
 			new inquirer.Separator('----- Install Routine Tasks -----'),
 			{name: 'Remove Steam Game Uninstall Links', value: 'removeSteamUninstallLinks', checked: true},
