@@ -121,6 +121,11 @@ const appList = [
 		source: 'winget'
 	},
 	{
+		id: 'chrisant996.Clink',
+		name: 'Clink',
+		source: 'winget'
+	},
+	{
 		id: 'JanDeDobbeleer.OhMyPosh',
 		name: 'OhMyPosh',
 		source: 'winget'
