@@ -38,6 +38,7 @@ async function main() {
 			{name: 'Disable Taskbar "Widgets" Icon', value: 'explorerDisableTaskbarWidgets', checked: true},
 			{name: 'Disable "Previous Versions" and remove context menu item', value: 'explorerDisablePreviousVersions', checked: true},
 			{name: 'Prevent Auto Folder View Changes', value: 'explorerPreventFolderViewChanges', checked: false},
+			{name: 'Add Local Network to Intranet Zone', value: 'addLocalNetworkToIntranetZone', checked: false},
 			{name: 'Delete Superfluous Folders in User Profile', value: 'deleteExtraProfileDirs', checked: false},
 			new inquirer.Separator('----- Install Routine Tasks -----'),
 			{name: 'Remove Steam Game Uninstall Links', value: 'removeSteamUninstallLinks', checked: true},

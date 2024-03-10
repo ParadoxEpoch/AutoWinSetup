@@ -219,6 +219,13 @@ const tasks = {
 		await executeNoFail(`reg delete "HKLM\\Software\\Policies\\Microsoft\\PreviousVersions" /v "DisableLocalPage" /f`, 'Clearing DisableLocalPage policy for local machine...');
 		return true;
 	},
+	addLocalNetworkToIntranetZone: async () => {
+		console.log(msg.info(`==> Adding local network to Intranet Trusted Sites...\n`));
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /f`, 'Creating Range10000 key...');
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /v "*" /t REG_DWORD /d 1 /f`, 'Adding * DWORD to Range10000...');
+		await executeNoFail(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\ZoneMap\\Ranges\\Range10000" /v ":Range" /t REG_SZ /d "192.168.1.*" /f`, 'Adding :Range String to Range10000...');
+		return true;
+	},
 	deleteExtraProfileDirs: async () => {
 		console.log(msg.info(`==> Deleting superfluous folders in user profile...\n`));
 		await executeNoFail('"scripts/delete-profile-dirs.bat"', 'Running deletion script...');
