@@ -13,10 +13,10 @@ async function main() {
 		pageSize: 20,
 		choices: [
 			new inquirer.Separator('----- Software Installation -----'),
-			{name: 'Remove Windows Bloatware', value: 'debloat', checked: false},
-			{name: 'Install Common Apps', value: 'appInstall', checked: false},
-			{name: 'Disable "Microsoft Consumer Experiences" (bloatware and ads)', value: 'disableConsumerExperience', checked: false},
+			{name: 'Remove Windows Bloatware...', value: 'debloat', checked: false},
+			{name: 'Install Common Apps...', value: 'appInstall', checked: false},
 			new inquirer.Separator('----- Windows Tweaks -----'),
+			{name: 'Disable "Microsoft Consumer Experiences" (bloatware and ads)', value: 'disableConsumerExperience', checked: false},
 			{name: 'Disable Fast Startup', value: 'disableFastStartup', checked: false},
 			{name: 'Remove Duplicate Drive Entries in Navigation Pane', value: 'removeDuplicateDrives', checked: false},
 			{name: 'Disable Gallery in File Explorer', value: 'disableGallery', checked: false},
