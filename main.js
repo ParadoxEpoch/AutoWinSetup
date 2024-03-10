@@ -54,7 +54,7 @@ async function main() {
 			new inquirer.Separator('----- Other Tasks -----'),
 			{name: 'Import ExplorerPatcher Settings', value: 'importExplorerPatcherSettings', checked: false},
 			{name: 'Import AppData configs', value: 'importAppDataConfigs', checked: false},
-			{name: 'Clean up Start Menu folders', value: 'cleanupStartMenu', checked: false},
+			//{name: 'Clean up Start Menu folders', value: 'cleanupStartMenu', checked: false},
 			{name: 'Enable Windows Sandbox', value: 'enableSandboxFeature', checked: false},
 			{name: 'Enable ssh-agent', value: 'enableSshAgent', checked: false}
 		],
