@@ -10,7 +10,7 @@ export const execute = (command) => {
 			if (code === 0) {
 				resolve(`Child process exited with code ${code}`);
 			} else {
-				reject(new Error(`Child process exited with code ${code}`));
+				reject(new Error(`Child process exited with code ${code}`, { cause: code }));
 			}
 		});
 	});

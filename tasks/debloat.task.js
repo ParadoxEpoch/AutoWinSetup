@@ -124,17 +124,24 @@ export default async function main() {
 		const appName = appList.find(x => x.id === app).name;
 		try {
 			console.log(msg.info(`Removing ${appName}...`));
-			let didSucceed = false;
+			let didFail = false;
+			let didRemove = false;
 			// Split app ids by space and remove each one separately, since one ID failing to uninstall will cause the whole command to fail
 			const apps = app.split(" ");
 			for (const a of apps) {
 				try {
 					await execute(`winget uninstall --accept-source-agreements --id ${a}`);
-					didSucceed = true;
-				} catch (e) { /* empty */ }
+					didRemove = true;
+				} catch (e) {
+					// If exit code is 2316632084, the package was not found / is not installed
+					didFail = e.cause === 2316632084 ? false : true;
+				}
 			}
-			if (!didSucceed) throw new Error();
-			console.log(msg.success(`✓ Success!\n`));
+			if (didFail) throw new Error();
+			didRemove
+				? console.log(msg.success(`✓ Success!\n`))
+				: console.log(msg.warn(`⚠  Couldn't find ${appName}, it's probably not installed\n`));
+			
 		} catch (e) {
 			console.log(msg.error(`✗ Error removing ${appName}\n`));
 		}
