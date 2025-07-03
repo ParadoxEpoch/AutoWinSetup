@@ -130,7 +130,7 @@ export default async function main() {
 			const apps = app.split(" ");
 			for (const a of apps) {
 				try {
-					await execute(`winget uninstall --accept-source-agreements --id ${a}`);
+					await execute(`winget uninstall --accept-source-agreements ${a}`);
 					didRemove = true;
 				} catch (e) {
 					// If exit code is 2316632084, the package was not found / is not installed
