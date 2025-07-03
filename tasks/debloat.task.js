@@ -11,6 +11,10 @@ const appList = [
 		name: "Clipchamp"
 	},
 	{
+		id: "9NHT9RB2F4HD",
+		name: "Copilot"
+	},
+	{
 		id: "9NFFX4SZZ23L",
 		name: "Cortana"
 	},
