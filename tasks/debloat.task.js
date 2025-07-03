@@ -7,6 +7,14 @@ const appList = [
 		name: "Windows Web Experience Pack (Widgets)"
 	},
 	{
+		id: "Microsoft.Microsoft3DViewer_8wekyb3d8bbwe",
+		name: "3D Viewer"
+	},
+	{
+		id: "9NZBF4GT040C",
+		name: "Bing"
+	},
+	{
 		id: "9P1J8S7CCWWT",
 		name: "Clipchamp"
 	},
@@ -15,7 +23,7 @@ const appList = [
 		name: "Copilot"
 	},
 	{
-		id: "9NFFX4SZZ23L",
+		id: "9NFFX4SZZ23L Microsoft.549981C3F5F10",
 		name: "Cortana"
 	},
 	{
@@ -47,7 +55,7 @@ const appList = [
 		name: "Microsoft 365 (Office) (Web App)"
 	},
 	{
-		id: "9WZDNCRDTBVB",
+		id: "9WZDNCRDTBVB Microsoft.WindowsMaps_8wekyb3d8bbwe",
 		name: "Maps"
 	},
 	{
@@ -55,8 +63,24 @@ const appList = [
 		name: "Media Player"
 	},
 	{
+		id: "Microsoft.MixedReality.Portal_8wekyb3d8bbwe",
+		name: "Mixed Reality Portal"
+	},
+	{
 		id: "9WZDNCRFJ1P3 Microsoft.OneDrive",
 		name: "OneDrive"
+	},
+	{
+		id: "Microsoft.Office.OneNote_8wekyb3d8bbwe",
+		name: "OneNote"
+	},
+	{
+		id: "Microsoft.People_8wekyb3d8bbwe",
+		name: "People"
+	},
+	{
+		id: "Microsoft.ScreenSketch_8wekyb3d8bbwe",
+		name: "Snip & Sketch"
 	},
 	{
 		id: "XP8BT8DW290MPQ Microsoft.Teams",
@@ -75,15 +99,31 @@ const appList = [
 		name: "News"
 	},
 	{
+		id: "Microsoft.YourPhone_8wekyb3d8bbwe",
+		name: "Phone Link"
+	},
+	{
+		id: "Microsoft.Windows.Photos_8wekyb3d8bbwe",
+		name: "Photos"
+	},
+	{
 		id: "9P7BP5VNWKX5",
 		name: "Quick Assist"
+	},
+	{
+		id: "9MSPC6MP8FM4 Microsoft.Whiteboard",
+		name: "Whiteboard"
 	},
 	{
 		id: "9NBLGGH4QGHW",
 		name: "Sticky Notes"
 	},
 	{
-		id: "9WZDNCRDTBJJ",
+		id: "Microsoft.Skype Microsoft.SkypeApp_kzf8qxf38zg5c",
+		name: "Skype"
+	},
+	{
+		id: "9WZDNCRDTBJJ Microsoft.Getstarted_8wekyb3d8bbwe",
 		name: "Tips"
 	},
 	{
@@ -93,6 +133,14 @@ const appList = [
 	{
 		id: "9WZDNCRFJ3Q2",
 		name: "Weather"
+	},
+	{
+		id: "Microsoft.XboxApp_8wekyb3d8bbwe",
+		name: "Xbox Console Companion"
+	},
+	{
+		id: "Microsoft.XboxGameOverlay_8wekyb3d8bbwe Microsoft.XboxGamingOverlay_8wekyb3d8bbwe",
+		name: "Xbox Game Bar"
 	}
 ]
 
