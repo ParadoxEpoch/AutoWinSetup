@@ -20,7 +20,7 @@ Manually download this repository and run `setup.bat`.
 
 ## Features
 
-* Remove over 20 preinstalled bloatware apps bundled in Windows 10/11.
+* Remove over 30 preinstalled bloatware apps bundled in Windows 10/11.
   * 3D Viewer
   * Bing
   * Copilot
