@@ -20,7 +20,10 @@ Manually download this repository and run `setup.bat`.
 
 ## Features
 
-* Remove over 20 preinstalled bloatware apps bundled in Windows 11.
+* Remove over 20 preinstalled bloatware apps bundled in Windows 10/11.
+  * 3D Viewer
+  * Bing
+  * Copilot
   * Clipchamp
   * Cortana
   * Camera
@@ -33,17 +36,27 @@ Manually download this repository and run `setup.bat`.
     * This is the web app / PWA version of 365.
   * Maps
   * Media Player
+  * Mixed Reality Portal
   * OneDrive
+  * OneNote
   * Teams
   * To Do
   * Films and TV
   * News
+  * People
+  * Phone Link
+  * Photos
   * Quick Assist
+  * Skype
+  * Snip & Sketch
   * Sticky Notes
   * Tips
   * Voice Recorder
   * Weather
+  * Whiteboard
   * Windows Web Experience Pack (Widgets)
+  * Xbox Console Companion
+  * Xbox Game Bar
 * One-click install for your choice of 30 common apps and tools
   * NVUpdater (Lightweight NVIDIA driver update tool)
   * 7zip
